@@ -29,12 +29,12 @@ export interface DaoInfoProp {
   daoLogo: string;
   daoTokenAddress: string;
   daoTokenChainId: CChainId;
-  token: Token;
-  proposalThreshold: TokenAmount;
-  votingThreshold: TokenAmount;
-  votingPeriod: number;
-  votingType: VotingTypes;
-  isCustomVotes: boolean;
+  token: Token; // governance token, Token chainId does not necessarily equal DAO chainId
+  proposalThreshold: TokenAmount; // create proposal minimum votes
+  votingThreshold: TokenAmount; // default proposal success minimum votes
+  votingPeriod: number; // default proposal life time
+  votingType: VotingTypes; // Voting type, any, multi-select and simple
+  isCustomVotes: boolean; // Custom: votingPeriod === 0
 }
 
 export interface ProposalOptionProp {
@@ -52,12 +52,12 @@ export interface ProposalDetailProp {
   uuid: string;
   startTime: number;
   endTime: number;
-  votingType: VotingTypes;
+  votingType: VotingTypes; // multi-select or simple
   content: string;
-  proposalOptions: ProposalOptionProp[];
+  proposalOptions: ProposalOptionProp[]; // options data
   proposalId: number;
-  votingThreshold: TokenAmount;
-  totalVoteAmount: TokenAmount;
+  votingThreshold: TokenAmount; // proposal success minimum votes
+  totalVoteAmount: TokenAmount; // Current number of valid votes
 }
 
 export interface AccountVotesInfo {

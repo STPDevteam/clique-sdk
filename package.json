@@ -1,5 +1,5 @@
 {
-  "name": "clique-sdk",
+  "name": "@stpt/clique-governance-sdk",
   "author": "",
   "version": "0.1.0-alpha",
   "license": "MIT",
@@ -19,7 +19,6 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "TESTING=true tsdx test --verbose",
-    "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why"

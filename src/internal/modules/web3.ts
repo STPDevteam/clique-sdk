@@ -8,6 +8,9 @@ import { DaoContractAbi } from '../abi/governanceDao'
 import { erc20ContractAbi } from '../abi/erc20'
 import { Signer } from "@ethersproject/abstract-signer";
 
+/**
+ * web3, contract
+ */
 export class Web3Module implements IClientWeb3Core {
 
     private _signer: Signer | undefined;
@@ -111,6 +114,7 @@ export class Web3Module implements IClientWeb3Core {
         return this._daoAddress;
     }
 
+    /** Returns the current DAO chainId */
     public getDaoChainId(): CChainId {
         return this._daoChainId;
     }

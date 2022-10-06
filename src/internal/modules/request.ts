@@ -2,6 +2,9 @@ import axios, { AxiosInstance, AxiosPromise } from "axios";
 import { Context } from "../../Context";
 import { IClientRequestCore, ResponseType } from "../interfaces/core";
 
+/**
+ * Backed request service
+ */
 export class RequestModule implements IClientRequestCore {
   public axiosInstance: AxiosInstance;
   public baseServeUrl: string;
@@ -32,6 +35,15 @@ export class RequestModule implements IClientRequestCore {
     return this.axiosInstance.post(url, data, { params });
   }
 
+  /**
+   * get proposal ids by dao
+   * @param chainId 
+   * @param daoAddress 
+   * @param status 
+   * @param offset 
+   * @param count 
+   * @returns 
+   */
   public getProposalList(
     chainId: number | string,
     daoAddress: string,
@@ -48,12 +60,26 @@ export class RequestModule implements IClientRequestCore {
     });
   }
 
+  /**
+   * get proposal dev by proposal uuid
+   * @param uuid 
+   * @returns 
+   */
   getProposalContent(uuid: string) {
     return this.get("stpdao/v2/proposal/query", {
       uuid,
     });
   }
 
+  /**
+   * get sign of create proposal and vote
+   * @param chainId 
+   * @param account 
+   * @param daoAddress 
+   * @param signType 
+   * @param proposalId 
+   * @returns 
+   */
   getSign(
     chainId: number,
     account: string,
@@ -70,6 +96,15 @@ export class RequestModule implements IClientRequestCore {
     });
   }
 
+  /**
+   * Vote list by proposal id
+   * @param chainId 
+   * @param daoAddress 
+   * @param proposalId 
+   * @param offset 
+   * @param count 
+   * @returns 
+   */
   getProposalVotesList(
     chainId: number | string,
     daoAddress: string,
@@ -86,6 +121,11 @@ export class RequestModule implements IClientRequestCore {
     });
   }
 
+  /**
+   * save proposal desc
+   * @param content proposal desc
+   * @returns 
+   */
   saveProposalContent(content: string) {
     return this.post('stpdao/v2/proposal/save', {
       content

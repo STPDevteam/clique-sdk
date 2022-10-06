@@ -9,6 +9,9 @@ if (typeof process !== "undefined" && process.env?.TESTING) {
   supportedProtocols.push("http:");
 }
 
+/**
+ * The Context class is an utility component that holds the configuration passed to Clique instance.
+ */
 export class Context {
   protected state: Web3ContextParams;
   // INTERNAL CONTEXT STATE
@@ -49,6 +52,10 @@ export class Context {
     };
   }
 
+  /**
+   * set web3Providers and signer
+   * @param contextParams 
+   */
   set(contextParams: Partial<Web3ContextParams>) {
     const _state = Object.assign({}, this.state || {}) as Web3ContextParams;
     if (contextParams.signer) {
@@ -100,10 +107,16 @@ export class Context {
     return this.state.web3Providers as { [key in CChainId]: JsonRpcProvider[] };
   }
 
+  /**
+   * dao address
+   */
   get daoDaoAddress(): string {
     return this.state.daoAddress;
   }
 
+  /**
+   * dao chainId
+   */
   get daoDaoChainId(): CChainId {
     return this.state.daoChainId;
   }
@@ -113,7 +126,6 @@ export class Context {
   }
 
   // INTERNAL HELPERS
-
   private static resolveWeb3Providers(
     endpoints: string | JsonRpcProvider | (string | JsonRpcProvider)[],
     network?: Networkish

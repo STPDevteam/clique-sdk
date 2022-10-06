@@ -8,7 +8,7 @@ import { Web3Module } from "./modules/web3";
 import { RequestModule } from "./modules/request";
 
 /**
- * Provides the low level foundation so that subclasses have ready-made access to Web3, IPFS and GraphQL primitives
+ * Provides the low level foundation so that subclasses have ready-made access to Web3, server
  */
 export abstract class ClientCore implements IClientCore {
 

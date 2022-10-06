@@ -24,15 +24,22 @@ import {
 } from "./internal/utils/error";
 import { Token, TokenAmount } from "./token";
 
+/**
+ * Clique class 
+ */
 export class Clique extends ClientCore implements IClique {
   private _daoToken: Token | undefined;
-  public daoInfo: DaoInfoProp | undefined;
+  public daoInfo: DaoInfoProp | undefined; // current dao info
 
   constructor(context: Context) {
     super(context);
     this.getDaoInfo();
   }
 
+  /**
+   * get governance dao info
+   * @returns 
+   */
   public async getDaoInfo(): Promise<DaoInfoProp> {
     if (this.daoInfo) return this.daoInfo;
 
@@ -80,6 +87,11 @@ export class Clique extends ClientCore implements IClique {
     return daoInfo;
   }
 
+  /**
+   * get proposal Info by proposalId
+   * @param proposalId 
+   * @returns 
+   */
   public async getProposalInfo(
     proposalId: number
   ): Promise<ProposalDetailProp> {
@@ -164,6 +176,12 @@ export class Clique extends ClientCore implements IClique {
     };
   }
 
+  /**
+   * get account votes info of proposalId
+   * @param account 
+   * @param proposalId 
+   * @returns 
+   */
   public async getAccountVotesById(
     account: string,
     proposalId: number
@@ -186,6 +204,19 @@ export class Clique extends ClientCore implements IClique {
     }));
   }
 
+  /**
+   * 
+   * @param title Proposal title
+   * @param introduction Proposal introduction
+   * @param content Proposal content
+   * @param startTime Proposal end time
+   * @param endTime Proposal start time
+   * @param votingType Voting type, any, multi-select and simple
+   * @param options Vote options
+   * @param signData To get signData by _getProposalDataAndSignature
+   * @param isCheck Validation rules, affect speed
+   * @returns 
+   */
   public async createProposal(
     title: string,
     introduction: string,
@@ -230,6 +261,11 @@ export class Clique extends ClientCore implements IClique {
     return contract.createProposal(...args);
   }
 
+  /**
+   * To cancel proposal before closing
+   * @param proposalId 
+   * @param checkParams Validation rules, affect speed
+   */
   public async cancelProposal(
     proposalId: number,
     checkParams?: { account: string }
@@ -257,6 +293,14 @@ export class Clique extends ClientCore implements IClique {
     contract.cancelProposal(proposalId);
   }
 
+  /**
+   * 
+   * @param proposalId 
+   * @param index option index
+   * @param amountRaw voting amount raw
+   * @param signData To get signData by _getProposalDataAndSignature
+   * @param isCheck Validation rules, affect speed
+   */
   public async proposalVote(
     proposalId: number,
     index: number[],
@@ -295,6 +339,12 @@ export class Clique extends ClientCore implements IClique {
     contract.vote(...args);
   }
 
+  /**
+   * Get token info
+   * @param chainId 
+   * @param tokenAddress 
+   * @returns 
+   */
   public async getToken(
     chainId: CChainId,
     tokenAddress: string
@@ -316,11 +366,18 @@ export class Clique extends ClientCore implements IClique {
     return new Token(chainId, tokenAddress, allRes[0], allRes[1], allRes[2]);
   }
 
+  /**
+   * Paging to get proposal id
+   * @param status Search, proposal status
+   * @param offset 0~
+   * @param pageSize Default 8
+   * @returns 
+   */
   public async getProposalListIds(
     status: ProposalStatus | undefined,
     offset: number,
     pageSize = 8
-  ) {
+  ): Promise<{ total: number; proposalIds: number[]; }> {
     const listRes = await this.request.getProposalList(
       this.getDaoChainId(),
       this.getDaoAddress(),
@@ -339,6 +396,13 @@ export class Clique extends ClientCore implements IClique {
     };
   }
 
+  /**
+   * Get proposal vote history list
+   * @param proposalId 
+   * @param offset 0~
+   * @param pageSize Default 8
+   * @returns 
+   */
   public async getProposalVoteHistory(
     proposalId: number,
     offset: number,
@@ -377,6 +441,12 @@ export class Clique extends ClientCore implements IClique {
     };
   }
 
+  /**
+   * Obtain user voting data and signatures from accounts and proposals
+   * @param account 
+   * @param proposalId 
+   * @returns 
+   */
   public async getVotesDataAndSignature(
     account: string,
     proposalId: number
@@ -384,13 +454,25 @@ export class Clique extends ClientCore implements IClique {
     return this._getProposalDataAndSignature(account, ProposalSignType.VOTE, proposalId)
   }
   
+  /**
+   * Obtain user create proposal data and signatures from accounts and proposals
+   * @param account 
+   * @param proposalId 
+   * @returns 
+   */
   public async getCreateProposalDataAndSignature(
-    account: string,
-    proposalId: number
+    account: string
   ): Promise<ProposalSignProp> {
-    return this._getProposalDataAndSignature(account, ProposalSignType.CREATE_PROPOSAL, proposalId)
+    return this._getProposalDataAndSignature(account, ProposalSignType.CREATE_PROPOSAL, 0)
   }
 
+  /**
+   * Get signature data
+   * @param account 
+   * @param signType Create proposal or voting
+   * @param proposalId 
+   * @returns 
+   */
   private async _getProposalDataAndSignature(
     account: string,
     signType: ProposalSignType,
@@ -424,6 +506,11 @@ export class Clique extends ClientCore implements IClique {
     };
   }
 
+  /**
+   * Get governance dao token,
+   * the token chainId does not necessarily equal DAO chainId
+   * @returns 
+   */
   public getDaoToken(): Token | undefined {
     return this._daoToken;
   }
