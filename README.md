@@ -1,6 +1,6 @@
 # Clique JS governance SDK
 
-`@stpt/clique-governance-sdkt` provides easy access to the high level interactions to be governance with an Clique DAO.
+`@stpt/clique-governance-sdk` provides easy access to the high level interactions to be governance with an Clique DAO.
 
 - [Testnet website](https://testv2.myclique.io/)
 - The current version is the test version.
