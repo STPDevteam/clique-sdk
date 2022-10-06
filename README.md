@@ -1,6 +1,6 @@
 # Clique JS governance SDK
 
-`@stpt/clique-governance-sdk` provides easy access to the high level interactions to be governance with an Clique DAO.
+`@myclique/governance-sdk` provides easy access to the high level interactions to be governance with an Clique DAO.
 
 - [Testnet website](https://testv2.myclique.io/)
 - The current version is the test version.
@@ -9,12 +9,12 @@
 # Installation
 
 Use [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) to install
-@stpt/clique-governance-sdk.
+@myclique/governance-sdk.
 
 ```sh
-npm install @stpt/clique-governance-sdk
+npm install @myclique/governance-sdk
 # or
-yarn add @stpt/clique-governance-sdk
+yarn add @myclique/governance-sdk
 ```
 
 ### # Usage
@@ -25,7 +25,7 @@ The [Context](./src/Context.ts) class is an utility component that holds the
 configuration passed to [Clique](./src/Clique.ts) instance.
 
 ```typescript
-import { Context, Clique, CChainId } from "@stpt/clique-governance-sdk"
+import { Context, Clique, CChainId } from "@myclique/governance-sdk"
 
 // Define
 const context: Context = new Context({
@@ -49,7 +49,7 @@ clique.web3.useSigner(signer)
 ### Get governance dao info
 
 ```typescript
-import { Clique, DaoInfoProp } from "@stpt/clique-governance-sdk"
+import { Clique, DaoInfoProp } from "@myclique/governance-sdk"
 
 const clique: Clique = new Clique(context)
 const daoInfo: DaoInfoProp | undefined = clique.daoInfo
@@ -60,7 +60,7 @@ const daoInfo: DaoInfoProp = await clique.getDaoInfo()
 ### Get governance dao token
 
 ```typescript
-import { Clique, DaoInfoProp, Token } from "@stpt/clique-governance-sdk"
+import { Clique, DaoInfoProp, Token } from "@myclique/governance-sdk"
 
 const clique: Clique = new Clique(context)
 
@@ -74,7 +74,7 @@ const daoToken: Token = daoInfo.token
 ### Create proposal
 
 ```typescript
-import { ProposalSignProp, ProposalVotingTypes } from "@stpt/clique-governance-sdk"
+import { ProposalSignProp, ProposalVotingTypes } from "@myclique/governance-sdk"
 
 const data: ProposalSignProp = await clique.getCreateProposalDataAndSignature(
   account
@@ -94,7 +94,7 @@ clique.createProposal(
 ### Get proposal list ids
 
 ```typescript
-import { ProposalStatus } from "@stpt/clique-governance-sdk"
+import { ProposalStatus } from "@myclique/governance-sdk"
 
 // get ids
 const proposalListData: {
@@ -106,7 +106,7 @@ const proposalListData: {
 ### Get proposal info by proposal id
 
 ```typescript
-import { ProposalDetailProp } from "@stpt/clique-governance-sdk"
+import { ProposalDetailProp } from "@myclique/governance-sdk"
 
 const proposalDetail: ProposalDetailProp = await clique.getProposalInfo(1)
 ```
@@ -121,7 +121,7 @@ clique.cancelProposal(1)
 ### Get account votes
 
 ```typescript
-import { AccountVotesInfo } from "@stpt/clique-governance-sdk"
+import { AccountVotesInfo } from "@myclique/governance-sdk"
 
 const votes: AccountVotesInfo = clique.getAccountVotesById(account, 1)
 ```
@@ -129,7 +129,7 @@ const votes: AccountVotesInfo = clique.getAccountVotesById(account, 1)
 ### vote
 
 ```typescript
-import { ProposalSignProp } from "@stpt/clique-governance-sdk"
+import { ProposalSignProp } from "@myclique/governance-sdk"
 
 const proposalId = 1
 const data: ProposalSignProp = await clique.getVotesDataAndSignature(
@@ -142,7 +142,7 @@ clique.proposalVote(proposalId, [0], [data.balance.raw.toString()], data, true)
 ### getProposalVoteHistory
 
 ```typescript
-import { ProposalVoteHistory } from "@stpt/clique-governance-sdk"
+import { ProposalVoteHistory } from "@myclique/governance-sdk"
 
 const list: {
   total: number
