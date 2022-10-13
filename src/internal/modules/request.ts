@@ -55,6 +55,7 @@ export class RequestModule implements IClientRequestCore {
       chainId,
       daoAddress,
       status: status || "",
+      version: 'v2',
       offset,
       count,
     });

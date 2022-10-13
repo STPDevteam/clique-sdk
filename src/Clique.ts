@@ -159,7 +159,7 @@ export class Clique extends ClientCore implements IClique {
 
     const isSuccessProposal = !votingThreshold.greaterThan(totalVoteAmount);
 
-    const _proposalBaseInfo = isSuccessProposal
+    const _proposalBaseInfo = isSuccessProposal && _baseInfo.status === ProposalStatus.CLOSED
       ? Object.assign(_baseInfo, { status: ProposalStatus.SUCCESS })
       : _baseInfo;
 
