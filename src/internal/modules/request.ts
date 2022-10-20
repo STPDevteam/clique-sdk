@@ -1,7 +1,10 @@
 import axios, { AxiosInstance, AxiosPromise } from "axios";
 import { Context } from "../../Context";
+import { CChainId } from "../constants";
 import { IClientRequestCore, ResponseType } from "../interfaces/core";
 
+
+const TestnetChainIds = [CChainId.GOERLI, CChainId.POLYGON_MUMBAI]
 /**
  * Backed request service
  */
@@ -10,7 +13,7 @@ export class RequestModule implements IClientRequestCore {
   public baseServeUrl: string;
 
   constructor(context: Context) {
-    this.baseServeUrl = context.isTest ? "https://testapiv2.myclique.io/" : "https://apiv2.myclique.io/";
+    this.baseServeUrl = TestnetChainIds.includes(context.daoDaoChainId)  ? "https://testapiv2.myclique.io/" : "https://apiv2.myclique.io/";
     this.axiosInstance = axios.create({
       baseURL: this.baseServeUrl,
       timeout: 10000,

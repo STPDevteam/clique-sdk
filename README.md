@@ -2,6 +2,7 @@
 
 `@myclique/governance-sdk` provides easy access to the high level interactions to be governance with an Clique DAO.
 
+- [Website](https://myclique.io/)
 - [Testnet website](https://testv2.myclique.io/)
 - The current version is the test version.
 - The project is in beta, use at your own risk.
@@ -29,14 +30,27 @@ import { Context, Clique, CChainId } from "@myclique/governance-sdk";
 
 // Define
 const context: Context = new Context({
+  daoChainId: CChainId.POLYGON,
+  daoAddress: "0x39fa22b4852119c62aabdd4523ac587481943c61",
+  web3Providers: {
+    [CChainId.ETH]: "https://rpc.ankr.com/eth",
+    [CChainId.POLYGON]: "https://rpc.ankr.com/polygon",
+    [CChainId.GOERLI]: "",
+    [CChainId.POLYGON_MUMBAI]: "",
+  },
+});
+// Test
+const context: Context = new Context({
   daoChainId: CChainId.GOERLI,
   daoAddress: "0xadf89e38a2d189531c425e1f79db22b43889cb50",
-  isTest: true,
   web3Providers: {
+    [CChainId.ETH]: "https://rpc.ankr.com/eth",
+    [CChainId.POLYGON]: "https://rpc.ankr.com/polygon",
     [CChainId.GOERLI]: "https://goerli.infura.io/v3/",
     [CChainId.POLYGON_MUMBAI]: "https://rpc.ankr.com/polygon_mumbai",
   },
 });
+
 const clique: Clique = new Clique(context);
 
 // Update signer

@@ -47,8 +47,7 @@ export class Context {
       signer: contextParams.signer,
       daoAddress: contextParams.daoAddress,
       daoChainId: contextParams.daoChainId,
-      web3Providers: _web3Providers,
-      isTest: contextParams.isTest || false
+      web3Providers: _web3Providers
     };
   }
 
@@ -119,10 +118,6 @@ export class Context {
    */
   get daoDaoChainId(): CChainId {
     return this.state.daoChainId;
-  }
-
-  get isTest(): boolean {
-    return this.state.isTest || false;
   }
 
   // INTERNAL HELPERS

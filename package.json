@@ -8,13 +8,13 @@
     "DAO",
     "STP"
   ],
-  "version": "0.2.0-alpha",
+  "version": "0.2.1-alpha",
   "description": "The SDK is provides easy access to the high level interactions to be governance with an Clique DAO.",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/sdk.esm.js",
   "typings": "dist/index.d.ts",
-  "homepage": "https://testv2.myclique.io/",
+  "homepage": "https://myclique.io/",
   "repository": "https://github.com/STPDevteam/clique-sdk",
   "files": [
     "dist"

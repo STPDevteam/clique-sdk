@@ -8,7 +8,6 @@ type Web3ProvidersType = {[key in CChainId]: string | JsonRpcProvider | (string 
 
 export type Web3ContextParams = {
   signer?:  Signer
-  isTest?: boolean
   daoAddress: string
   daoChainId: CChainId
   web3Providers: Web3ProvidersType
