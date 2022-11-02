@@ -8,7 +8,7 @@
     "DAO",
     "STP"
   ],
-  "version": "0.2.1-alpha",
+  "version": "0.3.1-alpha",
   "description": "The SDK is provides easy access to the high level interactions to be governance with an Clique DAO.",
   "license": "MIT",
   "main": "dist/index.js",
