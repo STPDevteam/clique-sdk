@@ -254,7 +254,7 @@ export class Clique extends ClientCore implements IClique {
     const args = [
       [title, introduction, contentTag, startTime, endTime, votingType],
       options,
-      [signData.tokenChainId, signData.tokenAddress, signData.balance.raw.toString(), ProposalSignType.CREATE_PROPOSAL],
+      [signData.tokenChainId, signData.tokenAddress, signData.balance.raw.toString(), ProposalSignType.CREATE_PROPOSAL,signData.deadline],
       signData.signature
     ];
 
@@ -325,7 +325,6 @@ export class Clique extends ClientCore implements IClique {
     }
 
     const args = [
-      proposalId,
       index,
       amountRaw,
       [
@@ -333,6 +332,7 @@ export class Clique extends ClientCore implements IClique {
         signData.tokenAddress,
         signData.balance.raw.toString(),
         ProposalSignType.VOTE,
+        proposalId,
       ],
       signData.signature,
     ];
@@ -491,6 +491,7 @@ export class Clique extends ClientCore implements IClique {
       signature: string;
       tokenAddress: string;
       tokenChainId: CChainId;
+      deadline: number;
     } = returnData.data.data;
     let token = this.getDaoToken();
     if (!token) {
@@ -503,6 +504,7 @@ export class Clique extends ClientCore implements IClique {
       tokenAddress: data.tokenAddress,
       tokenChainId: data.tokenChainId,
       signature: data.signature,
+      deadline: data.deadline,
     };
   }
 

@@ -21,7 +21,6 @@ export const DaoContractAbi: ContractInterface = [
     "inputs": [
       { "indexed": true, "internalType": "uint256", "name": "proposalId", "type": "uint256" },
       { "indexed": true, "internalType": "address", "name": "proposer", "type": "address" },
-      { "indexed": false, "internalType": "uint256", "name": "nonce", "type": "uint256" },
       { "indexed": false, "internalType": "uint256", "name": "startTime", "type": "uint256" },
       { "indexed": false, "internalType": "uint256", "name": "endTime", "type": "uint256" }
     ],
@@ -55,8 +54,7 @@ export const DaoContractAbi: ContractInterface = [
       { "indexed": true, "internalType": "uint256", "name": "proposalId", "type": "uint256" },
       { "indexed": true, "internalType": "address", "name": "voter", "type": "address" },
       { "indexed": true, "internalType": "uint256", "name": "optionIndex", "type": "uint256" },
-      { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" },
-      { "indexed": false, "internalType": "uint256", "name": "nonce", "type": "uint256" }
+      { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }
     ],
     "name": "Vote",
     "type": "event"
@@ -117,7 +115,8 @@ export const DaoContractAbi: ContractInterface = [
           { "internalType": "uint256", "name": "chainId", "type": "uint256" },
           { "internalType": "address", "name": "tokenAddress", "type": "address" },
           { "internalType": "uint256", "name": "balance", "type": "uint256" },
-          { "internalType": "enum DAOBase.SignType", "name": "signType", "type": "uint8" }
+          { "internalType": "enum DAOBase.SignType", "name": "signType", "type": "uint8" },
+          { "internalType": "uint256", "name": "proposalIdOrDeadline", "type": "uint256" }
         ],
         "internalType": "struct DAOBase.SignInfo",
         "name": "signInfo_",
@@ -167,6 +166,13 @@ export const DaoContractAbi: ContractInterface = [
       { "internalType": "address", "name": "tokenAddress", "type": "address" }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "daoVersion",
+    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -334,7 +340,6 @@ export const DaoContractAbi: ContractInterface = [
   },
   {
     "inputs": [
-      { "internalType": "uint256", "name": "proposalId_", "type": "uint256" },
       { "internalType": "uint256[]", "name": "optionIndexes_", "type": "uint256[]" },
       { "internalType": "uint256[]", "name": "amounts_", "type": "uint256[]" },
       {
@@ -342,7 +347,8 @@ export const DaoContractAbi: ContractInterface = [
           { "internalType": "uint256", "name": "chainId", "type": "uint256" },
           { "internalType": "address", "name": "tokenAddress", "type": "address" },
           { "internalType": "uint256", "name": "balance", "type": "uint256" },
-          { "internalType": "enum DAOBase.SignType", "name": "signType", "type": "uint8" }
+          { "internalType": "enum DAOBase.SignType", "name": "signType", "type": "uint8" },
+          { "internalType": "uint256", "name": "proposalIdOrDeadline", "type": "uint256" }
         ],
         "internalType": "struct DAOBase.SignInfo",
         "name": "signInfo_",
@@ -369,5 +375,4 @@ export const DaoContractAbi: ContractInterface = [
     "stateMutability": "view",
     "type": "function"
   }
-];
-
+]

@@ -76,6 +76,7 @@ export interface ProposalSignProp {
   signature: string;
   tokenAddress: string;
   tokenChainId: CChainId;
+  deadline: number;
 }
 
 export interface ProposalVoteHistory {
