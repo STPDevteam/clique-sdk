@@ -4,7 +4,14 @@ import { CChainId } from "../constants";
 import { IClientRequestCore, ResponseType } from "../interfaces/core";
 
 
-const TestnetChainIds = [CChainId.GOERLI, CChainId.POLYGON_MUMBAI]
+const TestnetChainIds = [
+  CChainId.GOERLI,
+  CChainId.POLYGON_MUMBAI,
+  CChainId.BSCTEST,
+  CChainId.KLAYTN_BAOBAB,
+  CChainId.ZKSYNC_ERA_TESTNET,
+  CChainId.SEPOLIA
+]
 /**
  * Backed request service
  */
@@ -40,12 +47,12 @@ export class RequestModule implements IClientRequestCore {
 
   /**
    * get proposal ids by dao
-   * @param chainId 
-   * @param daoAddress 
-   * @param status 
-   * @param offset 
-   * @param count 
-   * @returns 
+   * @param chainId
+   * @param daoAddress
+   * @param status
+   * @param offset
+   * @param count
+   * @returns
    */
   public getProposalList(
     chainId: number | string,
@@ -66,8 +73,8 @@ export class RequestModule implements IClientRequestCore {
 
   /**
    * get proposal dev by proposal uuid
-   * @param uuid 
-   * @returns 
+   * @param uuid
+   * @returns
    */
   getProposalContent(uuid: string) {
     return this.get("stpdao/v2/proposal/query", {
@@ -77,12 +84,12 @@ export class RequestModule implements IClientRequestCore {
 
   /**
    * get sign of create proposal and vote
-   * @param chainId 
-   * @param account 
-   * @param daoAddress 
-   * @param signType 
-   * @param proposalId 
-   * @returns 
+   * @param chainId
+   * @param account
+   * @param daoAddress
+   * @param signType
+   * @param proposalId
+   * @returns
    */
   getSign(
     chainId: number,
@@ -102,12 +109,12 @@ export class RequestModule implements IClientRequestCore {
 
   /**
    * Vote list by proposal id
-   * @param chainId 
-   * @param daoAddress 
-   * @param proposalId 
-   * @param offset 
-   * @param count 
-   * @returns 
+   * @param chainId
+   * @param daoAddress
+   * @param proposalId
+   * @param offset
+   * @param count
+   * @returns
    */
   getProposalVotesList(
     chainId: number | string,
@@ -128,7 +135,7 @@ export class RequestModule implements IClientRequestCore {
   /**
    * save proposal desc
    * @param content proposal desc
-   * @returns 
+   * @returns
    */
   saveProposalContent(content: string) {
     return this.post('stpdao/v2/proposal/save', {
